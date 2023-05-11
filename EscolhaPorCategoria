@@ -1,0 +1,47 @@
+package automacaofooter;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+public class AutomacaoTony {
+	
+	WebDriver driver;
+	WebElement findElement (By by) {
+		return null;
+		
+		
+	} 
+	@Before
+	public void abrirNavegador(){
+		System.setProperty("webdriver.chrome.driver", "./Drivers/chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://tonyveiculos.com.br/");
+		RolarPage rolarPage = new RolarPage(driver);
+		rolarPage.scroll();
+		
+	}
+	
+
+		@After
+	public void tearDown() throws Exception {
+	
+				driver.quit();
+}
+
+
+	@Test
+	public void test() {
+	driver.findElement(By.xpath("/html/body/section[6]/div/div[2]/div[1]/div/a/p[2]")).click();
+	String urlAtual = driver.getCurrentUrl();
+	assertEquals(urlAtual, "https://tonyveiculos.com.br/Estoque/?valor_min=90000");
+	
+	}
+}
